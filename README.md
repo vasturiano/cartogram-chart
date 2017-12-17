@@ -1,7 +1,7 @@
 # Cartogram Chart
 
 <p align="center">
-     <a href="https://vasturiano.github.io/cartogram-chart/example/world-population/"><img width="80%" src="https://vasturiano.github.io/sunburst-chart/example/world-population/screenshot.png"></a>
+     <a href="https://vasturiano.github.io/cartogram-chart/example/world-population/"><img width="70%" src="https://vasturiano.github.io/sunburst-chart/example/world-population/screenshot.png"></a>
 </p>
 
 An interactive contiguous cartogram reusable chart for visualizing geographical data. 
