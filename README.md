@@ -6,7 +6,7 @@
 
 An interactive contiguous cartogram reusable chart for visualizing geographical data. 
 Given a [TopoJson](https://github.com/topojson/topojson/wiki) topology, renders its shapes with distorted areas according to a value associated with each feature. The geo projection to be used is configurable using the `projection` property.
-Uses [topogram](https://github.com/shawnbot/topogram) for the layout computation.
+Uses [Shawn Allen](https://github.com/shawnbot)'s [topogram](https://github.com/shawnbot/topogram) for the algorithm computation.
 
 [![NPM](https://nodei.co/npm/cartogram-chart.png?compact=true)](https://nodei.co/npm/cartogram-chart/)
 
