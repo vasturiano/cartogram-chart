@@ -1,0 +1,24 @@
+.cartogram .feature {
+    stroke: darkgrey;
+    transition: fill-opacity .7s;
+    cursor: pointer;
+}
+
+.cartogram .feature:hover {
+    fill-opacity: 0.6;
+    transition: fill-opacity .1s;
+}
+
+.cartogram-tooltip {
+    display: none;
+    position: absolute;
+    max-width: 320px;
+    margin-top: 20px;
+    margin-left: 8px;
+    padding: 5px;
+    border-radius: 3px;
+    font: 11px sans-serif;
+    color: #eee;
+    background: rgba(0, 0, 140, 0.8);
+    pointer-events: none;
+}
