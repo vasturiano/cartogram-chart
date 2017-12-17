@@ -4,7 +4,6 @@
   "description": "Cartogram web component for visualizing geographical data by distorting a TopoJson topology",
   "unpkg": "dist/cartogram-chart.min.js",
   "main": "dist/cartogram-chart.common.js",
-  "module": "dist/cartogram-chart.mjs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vasturiano/cartogram-chart.git"
