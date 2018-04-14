@@ -1,7 +1,7 @@
 import { select as d3Select, event as d3Event } from 'd3-selection';
 import 'd3-transition';
 import { geoMercator } from 'd3-geo';
-import cartogramModule from './lib/topogram/d3-cartogram.js';
+import cartogramModule from 'topogram';
 import Kapsule from 'kapsule';
 import accessorFn from 'accessor-fn';
 
