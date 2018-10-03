@@ -58,8 +58,6 @@ export default new Kapsule({
   update(state) {
     const valueOf = accessorFn(state.value);
     const colorOf = accessorFn(state.color);
-    const labelOf = accessorFn(state.label);
-    const tooltipContentOf = accessorFn(state.tooltipContent);
 
     state.svg
       .attr('width', state.width)
@@ -90,6 +88,10 @@ export default new Kapsule({
       .style('fill', 'lightgrey')
       .attr('d', state.cartogram.path)
       .on('mouseover', (feature) => {
+        const valueOf = accessorFn(state.value);
+        const labelOf = accessorFn(state.label);
+        const tooltipContentOf = accessorFn(state.tooltipContent);
+
         const label = labelOf(feature);
         const extraContent = tooltipContentOf(feature);
         state.tooltip.style('display', 'inline');
@@ -101,7 +103,7 @@ export default new Kapsule({
         `);
       })
       .on('mouseout', () => { state.tooltip.style('display', 'none'); })
-      .on('click', state.onClick);
+      .on('click', d => state.onClick(d));
 
     features.merge(newFeatures)
       .data(state.cartogram
