@@ -3,7 +3,8 @@
   "version": "1.0.6",
   "description": "Cartogram web component for visualizing geographical data by distorting a TopoJson topology",
   "unpkg": "dist/cartogram-chart.min.js",
-  "main": "dist/cartogram-chart.js",
+  "main": "dist/cartogram-chart.common.js",
+  "module": "dist/cartogram-chart.module.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vasturiano/cartogram-chart.git"
@@ -26,12 +27,17 @@
     "url": "https://github.com/vasturiano/cartogram-chart/issues"
   },
   "homepage": "https://github.com/vasturiano/cartogram-chart",
+  "files": [
+    "src/**/*",
+    "dist/**/*",
+    "example/**/*"
+  ],
   "scripts": {
     "build": "rm -rf dist && mkdir dist && rollup -c",
-    "watch": "rollup -c -w",
+    "dev": "rollup -c -w",
     "minify": "uglifyjs dist/cartogram-chart.js -o dist/cartogram-chart.min.js -c -m --comments '/Version/'",
     "build-module": "rollup -c rollup.config.module.js",
-    "prepublish": "npm run build && npm run minify"
+    "prepare": "npm run build && npm run minify && npm run build-module"
   },
   "dependencies": {
     "accessor-fn": "^1.2.2",
