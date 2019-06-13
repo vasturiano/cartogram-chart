@@ -1,4 +1,9 @@
-# Cartogram Chart
+Cartogram Chart
+==============
+
+[![NPM package][npm-img]][npm-url]
+[![Build Size][build-size-img]][build-size-url]
+[![Dependencies][dependencies-img]][dependencies-url]
 
 <p align="center">
      <a href="https://vasturiano.github.io/cartogram-chart/example/world-population/"><img width="70%" src="https://vasturiano.github.io/cartogram-chart/example/world-population/screenshot.png"></a>
@@ -9,8 +14,6 @@ An interactive contiguous cartogram reusable chart for visualizing geographical 
 Given a [TopoJson](https://github.com/topojson/topojson/wiki) topology, renders its shapes with distorted areas according to a value associated with each feature. The geo projection to be used is configurable using the `projection` property.
 
 Uses [Shawn Allen](https://github.com/shawnbot)'s [topogram](https://github.com/shawnbot/topogram) for the algorithm computation.
-
-[![NPM](https://nodei.co/npm/cartogram-chart.png?compact=true)](https://nodei.co/npm/cartogram-chart/)
 
 ## Quick start
 
@@ -54,3 +57,11 @@ myChart
 ## Giving Back
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url) If this project has helped you and you'd like to contribute back, you can always [buy me a ☕](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url)!
+
+
+[npm-img]: https://img.shields.io/npm/v/cartogram-chart.svg
+[npm-url]: https://npmjs.org/package/cartogram-chart
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/cartogram-chart.svg
+[build-size-url]: https://bundlephobia.com/result?p=cartogram-chart
+[dependencies-img]: https://img.shields.io/david/vasturiano/cartogram-chart.svg
+[dependencies-url]: https://david-dm.org/vasturiano/cartogram-chart
