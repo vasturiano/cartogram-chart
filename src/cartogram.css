@@ -13,12 +13,11 @@
     display: none;
     position: absolute;
     max-width: 320px;
-    margin-top: 20px;
-    margin-left: 8px;
+    white-space: nowrap;
     padding: 5px;
     border-radius: 3px;
-    font: 11px sans-serif;
+    font: 12px sans-serif;
     color: #eee;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0,0,0,0.65);
     pointer-events: none;
 }
