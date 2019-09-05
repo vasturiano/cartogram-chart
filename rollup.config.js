@@ -24,7 +24,7 @@ export default {
                 postCssNested()
             ]
         }),
-        resolve(),
+        resolve({ mainFields: ['module', 'jsnext:main', 'main'] }),
         commonJs(),
         babel({ exclude: 'node_modules/**' })
     ]

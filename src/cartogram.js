@@ -1,11 +1,9 @@
 import { select as d3Select, event as d3Event } from 'd3-selection';
 import 'd3-transition';
 import { geoMercator } from 'd3-geo';
-import cartogramModule from 'topogram';
+import { cartogram as d3Cartogram } from 'topogram';
 import Kapsule from 'kapsule';
 import accessorFn from 'accessor-fn';
-
-const d3Cartogram = cartogramModule.cartogram; // Unwrap CJS from ES module
 
 const ANIMATION_DURATION = 1200;
 
