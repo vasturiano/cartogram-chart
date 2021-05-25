@@ -1,31 +1,60 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonJs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
 import postCss from 'rollup-plugin-postcss';
-import postCssSimpleVars from 'postcss-simple-vars';
-import postCssNested from 'postcss-nested';
-import babel from 'rollup-plugin-babel';
-import { name, homepage, version } from './package.json';
+import { terser } from "rollup-plugin-terser";
+import { name, homepage, version, dependencies } from './package.json';
 
-export default {
+const umdConf = {
+  format: 'umd',
+  name: 'Cartogram',
+  banner: `// Version ${version} ${name} - ${homepage}`
+};
+
+export default [
+  { // UMD
     input: 'src/index.js',
     output: [
-        {
-            format: 'umd',
-            name: 'Cartogram',
-            file: `dist/${name}.js`,
-            sourcemap: true,
-            banner: `// Version ${version} ${name} - ${homepage}`
-        }
+      {
+        ...umdConf,
+        file: `dist/${name}.js`,
+        sourcemap: true
+      },
+      { // minify
+        ...umdConf,
+        file: `dist/${name}.min.js`,
+        plugins: [terser({
+          output: { comments: '/Version/' }
+        })]
+      }
     ],
     plugins: [
-        postCss({
-            plugins: [
-                postCssSimpleVars(),
-                postCssNested()
-            ]
-        }),
-        resolve({ mainFields: ['module', 'jsnext:main', 'main'] }),
-        commonJs(),
-        babel({ exclude: 'node_modules/**' })
+      postCss({ plugins: [] }),
+      babel({ exclude: 'node_modules/**' }),
+      resolve(),
+      commonJs()
     ]
-};
+  },
+  { // commonJs and ES modules
+    input: 'src/index.js',
+    output: [
+      {
+        format: 'cjs',
+        file: `dist/${name}.common.js`,
+        exports: 'auto'
+      },
+      {
+        format: 'es',
+        file: `dist/${name}.module.js`
+      }
+    ],
+    external: [
+      ...Object.keys(dependencies || {}),
+      'three/examples/jsm/controls/DragControls.js'
+    ],
+    plugins: [
+      postCss({ plugins: [] }),
+      babel()
+    ]
+  }
+];

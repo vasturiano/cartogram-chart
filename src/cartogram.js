@@ -1,5 +1,5 @@
-import { select as d3Select, event as d3Event } from 'd3-selection';
-import 'd3-transition';
+import { select as d3Select, pointer as d3Pointer } from 'd3-selection';
+import 'd3-transition'; // extends d3-selection prototype
 import { geoMercator } from 'd3-geo';
 import { cartogram as d3Cartogram } from 'topogram';
 import Kapsule from 'kapsule';
@@ -8,7 +8,6 @@ import accessorFn from 'accessor-fn';
 const ANIMATION_DURATION = 1200;
 
 export default new Kapsule({
-
   props: {
     width: { default: window.innerWidth },
     height: { default: window.innerHeight },
@@ -46,11 +45,12 @@ export default new Kapsule({
       if (e.target === this) { state.tooltip.remove(); }
     });
 
-    state.svg.on('mousemove', () => {
+    state.svg.on('mousemove', ev => {
+      const mousePos = d3Pointer(ev);
       state.tooltip
-        .style('left', d3Event.pageX + 'px')
-        .style('top', d3Event.pageY + 'px')
-        .style('transform', `translate(-${d3Event.offsetX / state.width * 100}%, 21px)`); // adjust horizontal position to not exceed canvas boundaries
+        .style('left', mousePos[0] + 'px')
+        .style('top', mousePos[1] + 'px')
+        .style('transform', `translate(-${mousePos[0] / state.width * 100}%, 21px)`); // adjust horizontal position to not exceed canvas boundaries
     });
   },
 
@@ -86,7 +86,7 @@ export default new Kapsule({
       .attr('class', 'feature')
       .style('fill', 'lightgrey')
       .attr('d', state.cartogram.path)
-      .on('mouseover', (feature) => {
+      .on('mouseover', (ev, feature) => {
         const valueOf = accessorFn(state.value);
         const labelOf = accessorFn(state.label);
         const tooltipContentOf = accessorFn(state.tooltipContent);
@@ -102,7 +102,7 @@ export default new Kapsule({
         `);
       })
       .on('mouseout', () => { state.tooltip.style('display', 'none'); })
-      .on('click', d => state.onClick(d));
+      .on('click', (ev, d) => state.onClick(d));
 
     features.merge(newFeatures)
       .data(state.cartogram

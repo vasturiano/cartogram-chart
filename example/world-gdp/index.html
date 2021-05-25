@@ -1,40 +1,40 @@
 <head>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script>
-    <script src="//unpkg.com/cartogram-chart"></script>
-    <!--<script src="../../dist/cartogram-chart.js"></script>-->
+  <script src="//unpkg.com/d3@6"></script>
+  <script src="//unpkg.com/cartogram-chart"></script>
+<!--  <script src="../../dist/cartogram-chart.js"></script>-->
 </head>
 
 <body>
-    <div id="world"></div>
+  <div id="world"></div>
 
-    <script>
-        d3.json('./ne_110m_admin_0_countries.json', (error, world) => {
-            if (error) throw error;
+  <script>
+    fetch('./ne_110m_admin_0_countries.json')
+      .then(r => r.json())
+      .then(world => {
+        // exclude antarctica
+        world.objects.countries.geometries.splice(
+          world.objects.countries.geometries.findIndex(d => d.properties.ISO_A2 === 'AQ'),
+          1
+        );
 
-            // exclude antarctica
-            world.objects.countries.geometries.splice(
-                world.objects.countries.geometries.findIndex(d => d.properties.ISO_A2 === 'AQ'),
-                1
-            );
+        const colorScale = d3.scaleSequential(d3.interpolatePlasma)
+          .domain([0, Math.max(...world.objects.countries.geometries.map(getGDPPerCapita))]);
 
-            const colorScale = d3.scaleSequential(d3.interpolatePlasma)
-                .domain([0, Math.max(...world.objects.countries.geometries.map(getGDPPerCapita))]);
+        Cartogram()
+          .topoJson(world)
+          .topoObjectName('countries')
+          .value(getGDPPerCapita)
+          .color(f => colorScale(getGDPPerCapita(f)))
+          .label(({ properties: p }) => `GDP of ${p.NAME} (${p.ISO_A2})`)
+          .units(' per capita')
+          .valFormatter(d3.format('$,.0f'))
+          (document.getElementById('world'));
+      });
 
-            Cartogram()
-                .topoJson(world)
-                .topoObjectName('countries')
-                .value(getGDPPerCapita)
-                .color(f => colorScale(getGDPPerCapita(f)))
-                .label(({ properties: p }) => `GDP of ${p.NAME} (${p.ISO_A2})`)
-                .units(' per capita')
-                .valFormatter(d3.format('$,.0f'))
-                (document.getElementById('world'));
+    //
 
-            //
-
-            function getGDPPerCapita({ properties: p }) {
-                return p.GDP_MD_EST * 1e6 / p.POP_EST;
-            }
-        });
-    </script>
+    function getGDPPerCapita({ properties: p }) {
+      return p.GDP_MD_EST * 1e6 / p.POP_EST;
+    }
+  </script>
 </body>
