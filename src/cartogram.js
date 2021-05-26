@@ -24,7 +24,7 @@ export default new Kapsule({
     valFormatter: { default: n => n },
     units: { default: '' },
     tooltipContent: { default: d => '' },
-    onClick: { default: d => {} }
+    onClick: {}
   },
 
   init(domNode, state) {
@@ -102,13 +102,14 @@ export default new Kapsule({
         `);
       })
       .on('mouseout', () => { state.tooltip.style('display', 'none'); })
-      .on('click', (ev, d) => state.onClick(d));
+      .on('click', (ev, d) => state.onClick && state.onClick(d));
 
     features.merge(newFeatures)
       .data(state.cartogram
         .iterations(state.iterations) // distort all features
         (state.topoJson, topoObject.geometries).features
       )
+      .style('cursor', state.onClick ? 'pointer' : null)
       .transition().duration(ANIMATION_DURATION)
         .style('fill', colorOf)
         .attr('d', state.cartogram.path);

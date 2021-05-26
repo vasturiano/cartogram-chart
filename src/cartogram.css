@@ -1,7 +1,6 @@
 .cartogram .feature {
     stroke: darkgrey;
     transition: fill-opacity .7s;
-    cursor: pointer;
 }
 
 .cartogram .feature:hover {
