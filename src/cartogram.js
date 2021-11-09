@@ -20,10 +20,10 @@ export default new Kapsule({
     topoObjectName: {},
     value: { default: 1 },
     color: { default: 'lightgrey' },
-    label: { default: '' },
-    valFormatter: { default: n => n },
-    units: { default: '' },
-    tooltipContent: { default: d => '' },
+    label: { triggerUpdate: false },
+    valFormatter: { default: n => n, triggerUpdate: false },
+    units: { default: '', triggerUpdate: false },
+    tooltipContent: { triggerUpdate: false },
     onClick: {}
   },
 
@@ -32,18 +32,14 @@ export default new Kapsule({
       .properties(d => d.properties);
 
     // Dom
-    state.svg = d3Select(domNode).append('svg')
-      .attr('class', 'cartogram');
+    const el = d3Select(domNode)
+      .append('div').attr('class', 'cartogram');
 
-    // tooltips
-    state.tooltip = d3Select('body')
-      .append('div')
-      .attr('class', 'chart-tooltip cartogram-tooltip');
+    state.svg = el.append('svg');
 
-    // tooltip cleanup on unmount
-    domNode.addEventListener ('DOMNodeRemoved', function(e) {
-      if (e.target === this) { state.tooltip.remove(); }
-    });
+    // tooltip
+    state.tooltip = el.append('div')
+      .attr('class', 'cartogram-tooltip');
 
     state.svg.on('mousemove', ev => {
       const mousePos = d3Pointer(ev);
@@ -93,7 +89,7 @@ export default new Kapsule({
 
         const label = labelOf(feature);
         const extraContent = tooltipContentOf(feature);
-        state.tooltip.style('display', 'inline');
+        state.tooltip.style('display', !!label || !!extraContent ? 'inline' : 'none');
         state.tooltip.html(`
           ${label ? `<b>${label}</b>:` : ''}
           ${state.valFormatter(valueOf(feature))}
