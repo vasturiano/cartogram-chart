@@ -27,7 +27,6 @@
           .color(({ properties: { ISO_A2 } }) => colorScale(ISO_A2))
           .label(({ properties: p }) => `Population of ${p.NAME} (${p.ISO_A2})`)
           .valFormatter(d3.format('.3s'))
-          .onClick(d => console.info(d))
           (document.getElementById('world'));
       });
   </script>
