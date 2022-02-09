@@ -1,6 +1,6 @@
 {
   "name": "cartogram-chart",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Cartogram web component for visualizing geographical data by distorting a TopoJson topology",
   "unpkg": "dist/cartogram-chart.min.js",
   "jsdelivr": "dist/cartogram-chart.min.js",
