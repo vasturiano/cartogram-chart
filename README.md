@@ -3,7 +3,7 @@ Cartogram Chart
 
 [![NPM package][npm-img]][npm-url]
 [![Build Size][build-size-img]][build-size-url]
-[![Dependencies][dependencies-img]][dependencies-url]
+[![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 
 <p align="center">
      <a href="https://vasturiano.github.io/cartogram-chart/example/world-population/"><img width="70%" src="https://vasturiano.github.io/cartogram-chart/example/world-population/screenshot.png"></a>
@@ -17,23 +17,23 @@ Uses [Shawn Allen](https://github.com/shawnbot)'s [topogram](https://github.com/
 
 ## Quick start
 
-```
+```js
 import Cartogram from 'cartogram-chart';
 ```
 or
-```
-Cartogram = require('cartogram-chart');
+```js
+const Cartogram = require('cartogram-chart');
 ```
 or even
-```
+```html
 <script src="//unpkg.com/cartogram-chart"></script>
 ```
 then
-```
+```js
 const myChart = Cartogram();
 myChart
-    .topoJson(<myTopology>)
-    (<myDOMElement>);
+  .topoJson(<myTopology>)
+  (<myDOMElement>);
 ```
 
 ## API reference
@@ -59,9 +59,9 @@ myChart
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url) If this project has helped you and you'd like to contribute back, you can always [buy me a ☕](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url)!
 
 
-[npm-img]: https://img.shields.io/npm/v/cartogram-chart.svg
+[npm-img]: https://img.shields.io/npm/v/cartogram-chart
 [npm-url]: https://npmjs.org/package/cartogram-chart
-[build-size-img]: https://img.shields.io/bundlephobia/minzip/cartogram-chart.svg
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/cartogram-chart
 [build-size-url]: https://bundlephobia.com/result?p=cartogram-chart
-[dependencies-img]: https://img.shields.io/david/vasturiano/cartogram-chart.svg
-[dependencies-url]: https://david-dm.org/vasturiano/cartogram-chart
+[npm-downloads-img]: https://img.shields.io/npm/dt/cartogram-chart
+[npm-downloads-url]: https://www.npmtrends.com/cartogram-chart
