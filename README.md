@@ -20,11 +20,7 @@ Uses [Shawn Allen](https://github.com/shawnbot)'s [topogram](https://github.com/
 ```js
 import Cartogram from 'cartogram-chart';
 ```
-or
-```js
-const Cartogram = require('cartogram-chart');
-```
-or even
+or using a *script* tag
 ```html
 <script src="//unpkg.com/cartogram-chart"></script>
 ```

@@ -2,8 +2,10 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonJs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import postCss from 'rollup-plugin-postcss';
-import { terser } from "rollup-plugin-terser";
-import { name, homepage, version, dependencies } from './package.json';
+import terser from '@rollup/plugin-terser';
+
+import pkg from './package.json' assert { type: 'json' };
+const { name, homepage, version, dependencies } = pkg;
 
 const umdConf = {
   format: 'umd',
@@ -35,17 +37,12 @@ export default [
       commonJs()
     ]
   },
-  { // commonJs and ES modules
+  { // ES module
     input: 'src/index.js',
     output: [
       {
-        format: 'cjs',
-        file: `dist/${name}.common.js`,
-        exports: 'auto'
-      },
-      {
         format: 'es',
-        file: `dist/${name}.module.js`
+        file: `dist/${name}.mjs`
       }
     ],
     external: [
