@@ -26,10 +26,8 @@ or using a *script* tag
 ```
 then
 ```js
-const myChart = Cartogram();
-myChart
-  .topoJson(<myTopology>)
-  (<myDOMElement>);
+const myChart = new Cartogram(<myDOMElement>)
+  .topoJson(<myTopology>);
 ```
 
 ## API reference

@@ -20,15 +20,14 @@
         const colorScale = d3.scaleSequential(d3.interpolatePlasma)
           .domain([0, Math.max(...world.objects.countries.geometries.map(getGDPPerCapita))]);
 
-        Cartogram()
+        new Cartogram(document.getElementById('world'))
           .topoJson(world)
           .topoObjectName('countries')
           .value(getGDPPerCapita)
           .color(f => colorScale(getGDPPerCapita(f)))
           .label(({ properties: p }) => `GDP of ${p.NAME} (${p.ISO_A2})`)
           .units(' per capita')
-          .valFormatter(d3.format('$,.0f'))
-          (document.getElementById('world'));
+          .valFormatter(d3.format('$,.0f'));
       });
 
     //

@@ -19,15 +19,14 @@
 
         const colorScale = d3.scaleOrdinal([...d3.schemeCategory20, ...d3.schemeCategory20b, ...d3.schemeCategory20c]);
 
-        Cartogram()
+        new Cartogram(document.getElementById('world'))
           .topoJson(world)
           .topoObjectName('countries')
           .iterations(120)
           .value(({ properties }) => properties.POP_EST)
           .color(({ properties: { ISO_A2 } }) => colorScale(ISO_A2))
           .label(({ properties: p }) => `Population of ${p.NAME} (${p.ISO_A2})`)
-          .valFormatter(d3.format('.3s'))
-          (document.getElementById('world'));
+          .valFormatter(d3.format('.3s'));
       });
   </script>
 </body>
