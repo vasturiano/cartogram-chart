@@ -1,5 +1,4 @@
 <head>
-  <script src="//unpkg.com/d3@4"></script>
   <script src="//unpkg.com/cartogram-chart"></script>
 <!--  <script src="../../dist/cartogram-chart.js"></script>-->
 </head>
@@ -7,7 +6,9 @@
 <body>
   <div id="world"></div>
 
-  <script>
+  <script type="module">
+    import * as d3 from 'https://esm.sh/d3@4';
+
     fetch('./ne_110m_admin_0_countries.json')
       .then(r => r.json())
       .then(world => {
