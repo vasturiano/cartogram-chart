@@ -1,9 +1,10 @@
-import { select as d3Select, pointer as d3Pointer } from 'd3-selection';
+import { select as d3Select } from 'd3-selection';
 import 'd3-transition'; // extends d3-selection prototype
 import { geoMercator } from 'd3-geo';
 import { cartogram as d3Cartogram } from 'topogram';
 import Kapsule from 'kapsule';
 import accessorFn from 'accessor-fn';
+import Tooltip from 'float-tooltip';
 
 const ANIMATION_DURATION = 1200;
 
@@ -38,16 +39,7 @@ export default new Kapsule({
     state.svg = el.append('svg');
 
     // tooltip
-    state.tooltip = el.append('div')
-      .attr('class', 'cartogram-tooltip');
-
-    state.svg.on('mousemove', ev => {
-      const mousePos = d3Pointer(ev);
-      state.tooltip
-        .style('left', mousePos[0] + 'px')
-        .style('top', mousePos[1] + 'px')
-        .style('transform', `translate(-${mousePos[0] / state.width * 100}%, 21px)`); // adjust horizontal position to not exceed canvas boundaries
-    });
+    state.tooltip = new Tooltip(el);
   },
 
   update(state) {
@@ -89,15 +81,14 @@ export default new Kapsule({
 
         const label = labelOf(feature);
         const extraContent = tooltipContentOf(feature);
-        state.tooltip.style('display', !!label || !!extraContent ? 'inline' : 'none');
-        state.tooltip.html(`
+        state.tooltip.content(!label && !extraContent ? null : `
           ${label ? `<b>${label}</b>:` : ''}
           ${state.valFormatter(valueOf(feature))}
           ${state.units}
           ${extraContent ? `<br/><br/>${extraContent}` : ''}
         `);
       })
-      .on('mouseout', () => { state.tooltip.style('display', 'none'); })
+      .on('mouseout', () => { state.tooltip.content(null); })
       .on('click', (ev, d) => state.onClick && state.onClick(d));
 
     features.merge(newFeatures)

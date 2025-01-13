@@ -11,16 +11,3 @@
 .cartogram {
   position: relative;
 }
-
-.cartogram-tooltip {
-  display: none;
-  position: absolute;
-  max-width: 320px;
-  white-space: nowrap;
-  padding: 5px;
-  border-radius: 3px;
-  font: 12px sans-serif;
-  color: #eee;
-  background: rgba(0,0,0,0.65);
-  pointer-events: none;
-}

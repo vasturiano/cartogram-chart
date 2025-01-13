@@ -4,7 +4,7 @@ import babel from '@rollup/plugin-babel';
 import postCss from 'rollup-plugin-postcss';
 import terser from '@rollup/plugin-terser';
 
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 const { name, homepage, version, dependencies } = pkg;
 
 const umdConf = {
