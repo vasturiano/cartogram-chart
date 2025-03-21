@@ -22,7 +22,7 @@ import Cartogram from 'cartogram-chart';
 ```
 or using a *script* tag
 ```html
-<script src="//unpkg.com/cartogram-chart"></script>
+<script src="//cdn.jsdelivr.net/npm/cartogram-chart"></script>
 ```
 then
 ```js
